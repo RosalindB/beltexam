@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>User Profile</title>
+    </head>
+    <body>
+        <a href="/logout">Logout</a>
+        <a href="/bright_ideas">Bright Ideas</a>
+        <br><br><br>
+        <p>Name: {{user.my_name}}</p>
+        <br>
+        <p>Alias: {{user.alias}}</p>
+        <br>
+        <p>Email Address: {{user.email}}</p>
+        <hr>
+        <h4>Total Number of Posts: {{user.ideas.count}}</h4><br>
+        
+        <h4>Total Number of Likes: {{t}}</h4>
+        
+    </body>
+</html>

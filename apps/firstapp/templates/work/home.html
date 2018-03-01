@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Bright Ideas</title>
+    </head>
+    <body>
+        <a href="/logout">Logout</a><br>
+        <br><h3>Hi {{request.session.alias}}!</h3><br><br> 
+        <form action="/submit_ideas" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="user_id" value="{{user.id}">
+            <input type='hidden' name='author_id' value='{{request.session.user_id}}' />
+            <textarea name="text" rows="3">Post something witty here...</textarea>
+            <input type="submit" value="Idea!"> 
+        </form>
+        <br>
+        {% for x in ideas %}
+            <h4><a href="/user/{{x.author.id}}"/>{{x.author.alias}}</a> says:<p>{{x.text}}</p></h4>
+            <form action="/createLike" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="receiver" value="{{x.id}}">
+                <input type="submit"  value="Like">
+            </form>
+            <p><a href="/bright_ideas/{{x.id}}">{{x.total_likes}} people</a> like this.</p>
+        {% endfor %}
+    </body>
+</html>
